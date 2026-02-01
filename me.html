@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>One Question 💖</title>
+
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #ff758c, #ff7eb3);
+        font-family: Arial, sans-serif;
+        overflow: hidden;
+    }
+
+    .box {
+        background: white;
+        padding: 30px;
+        border-radius: 20px;
+        text-align: center;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+        width: 90%;
+        max-width: 360px;
+        z-index: 2;
+    }
+
+    h1 {
+        color: #ff4d6d;
+    }
+
+    p {
+        color: #444;
+    }
+
+    button {
+        padding: 12px 28px;
+        margin: 15px;
+        border: none;
+        border-radius: 25px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    .yes {
+        background: #ff4d6d;
+        color: white;
+    }
+
+    .no {
+        background: #ddd;
+        position: absolute;
+    }
+
+    .confetti {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        animation: fall 3s linear infinite;
+    }
+
+    @keyframes fall {
+        0% { transform: translateY(-10px) rotate(0deg); }
+        100% { transform: translateY(100vh) rotate(360deg); }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="box">
+    <h1>Hey ❤️</h1>
+    <p>
+        From the moment I met you,<br>
+        my world became brighter ✨
+    </p>
+    <h2>Will you be my girlfriend? 💕</h2>
+
+    <button class="yes" onclick="yesClicked()">YES 💖</button>
+    <button class="no" id="noBtn">NO 🙈</button>
+</div>
+
+<!-- Background Music -->
+<audio id="music">
+    <!-- Replace song.mp3 with your file -->
+    <source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+    const noBtn = document.getElementById("noBtn");
+
+    noBtn.addEventListener("mouseover", () => {
+        const x = Math.random() * (window.innerWidth - 100);
+        const y = Math.random() * (window.innerHeight - 50);
+        noBtn.style.left = x + "px";
+        noBtn.style.top = y + "px";
+    });
+
+    function yesClicked() {
+        document.getElementById("music").play();
+
+        document.body.innerHTML = `
+        <div style="
+            height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            flex-direction:column;
+            background:#ff4d6d;
+            color:white;
+            font-family:Arial;
+            text-align:center;
+        ">
+            <h1>YAY!!! 💖😍</h1>
+            <h2>You said YES! 💕</h2>
+            <p>— Forever starts now ✨</p>
+        </div>
+        `;
+
+        for (let i = 0; i < 100; i++) {
+            let c = document.createElement("div");
+            c.className = "confetti";
+            c.style.left = Math.random() * window.innerWidth + "px";
+            c.style.background =
+                ["#fff","#ffd166","#06d6a0","#118ab2","#ef476f"]
+                [Math.floor(Math.random()*5)];
+            c.style.animationDuration = (Math.random() * 2 + 2) + "s";
+            document.body.appendChild(c);
+        }
+    }
+</script>
+
+</body>
+</html>
